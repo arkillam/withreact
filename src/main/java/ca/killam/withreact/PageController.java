@@ -19,18 +19,22 @@ public class PageController {
 /** should always have logging :) */
 private Logger logger = LoggerFactory.getLogger(PageController.class);
 
-/**
- * injecting a string just for the sake of doing so; this is passed through and
- * displayed on the index JSP
- */
+/** the injected string displayed on the message page */
 @Value("${me.message}")
 private String message;
 
-@RequestMapping("/")
-public String homepage(Model model) {
+/**
+ * Returns a page that displays the message injected from application.yml
+ * 
+ * @param model
+ * 
+ * @return
+ */
+@RequestMapping("/message")
+public String message(Model model) {
 	logger.debug(message);
 	model.addAttribute("message", message);
-	return "index";
+	return "message";
 }
 
 }
